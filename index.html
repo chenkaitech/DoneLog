@@ -15,15 +15,91 @@
 
 <link rel="icon" href="donelog_128.png">
 
-<!-- 保留原来的样式不变 -->
+<style>
+/* 原始 DualcameraVlog 样式保持不变 */
+:root{
+  --bg:#050712; 
+  --surface:#111525; 
+  --text:#F5F7FF; 
+  --text2:#B9C3DA;
 
+  --accent:#6EE7FF;
+  --accent2:#4F8CFF;
+
+  --chip:#1B2238; 
+  --chip2:#1A2036;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, 
+  Noto Sans, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:40px 24px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand img.icon{width:40px;height:40px;border-radius:12px}
+.lang-switch{display:flex;gap:8px;background:var(--surface);border-radius:12px;padding:6px}
+.lang-switch button{all:unset;cursor:pointer;padding:6px 14px;border-radius:10px;color:var(--text2);font-weight:600}
+.lang-switch button.active{background:var(--accent);color:#0B1220}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{color:var(--text2);font-weight:600}
+.nav-links a:hover{color:var(--text)}
+
+.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:36px;align-items:center;margin-top:40px}
+.hero h1{font-size:40px;line-height:1.1;margin:0 0 16px}
+.hero p.lead{color:var(--text2);font-size:18px;margin:0 0 24px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.button{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  color:#0B1220;font-weight:700;padding:14px 22px;border-radius:14px;
+  box-shadow:0 10px 30px rgba(79,140,255,.25);
+} 
+.button.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+.card{background:var(--surface);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.25);} 
+.section{margin-top:80px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.tag{
+  display:inline-block;padding:6px 10px;border-radius:8px;font-size:13px;
+  background:rgba(110,231,255,.16);color:#CFF8FF
+}
+.sample{width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);background:#0f1118;aspect-ratio:9/19.5;object-fit:cover}
+.footer{margin-top:80px;color:var(--text2);font-size:14px;border-top:1px solid rgba(255,255,255,.08);padding:32px 0}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.gallery img{
+  width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);
+  background:#0f1118;aspect-ratio:9/19.5;object-fit:cover
+}
+/* 竖屏图比例 */
+.gallery img.portrait { aspect-ratio: 9 / 19.5; }
+/* 横屏图比例 (iPad & 平板横屏) */
+.gallery img.landscape { aspect-ratio: 16 / 10; }
+@media (max-width:960px){ .hero{grid-template-columns:1fr} }
+
+.pn-card{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);background:#0F1528}
+.pn-top{padding:22px 22px 10px;color:#CFF8FF;font-weight:800;letter-spacing:.04em}
+.pn-body{
+  background:radial-gradient(circle at 10% 0%,rgba(110,231,255,.35),rgba(110,231,255,0) 55%),linear-gradient(180deg,#151A33,#070B18);
+  padding:22px
+}
+.pn-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+.pn-avatar{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 0%,#B9F6FF,#4F8CFF);opacity:.9}
+.pn-line{height:10px;border-radius:6px;background:rgba(255,255,255,.10);flex:1}
+.pn-line.bold{height:14px;background:rgba(255,255,255,.16);width:70%}
+.pn-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--text2);font-size:12px;font-weight:600}
+.pn-dots{display:flex;gap:6px}
+.pn-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.pn-bar{background:#0B0F1E;color:#E6F7FF;text-align:center;padding:12px;font-weight:700}
+</style>
 </head>
 
 <body>
 <div class="container">
   <nav>
     <div class="brand">
-      <!-- 替换为 DoneLog 图标 -->
       <img class="icon" src="donelog_128.png" alt="DoneLog icon">
       <span>
         <span data-en="DoneLog" data-zh="DoneLog"></span> ·
@@ -44,12 +120,8 @@
 
   <section class="hero">
     <div>
-      <h1
-        data-en="Record what you actually did"
-        data-zh="记录你真正做过的事"></h1>
-
-      <p class="lead"
-         data-en="DoneLog helps you track completed tasks, visualize your time, and generate CSV/PDF reports for review."
+      <h1 data-en="Record what you actually did" data-zh="记录你真正做过的事"></h1>
+      <p class="lead" data-en="DoneLog helps you track completed tasks, visualize your time, and generate CSV/PDF reports for review."
          data-zh="DoneLog 帮你记录完成事项、追踪时间投入，并通过时间轴与统计图表清晰回顾每天的活动，支持 CSV / PDF 导出。"></p>
 
       <div class="cta">
@@ -59,58 +131,34 @@
 
       <div style="margin-top:24px;color:var(--text2)">
         <span>• </span>
-        <span
-          data-en="Activity logging · Timeline · Insights · Categories · Reminders · CSV/PDF Export"
-          data-zh="活动记录 · 时间轴 · 洞察分析 · 分类管理 · 提醒通知 · CSV/PDF 导出"></span>
+        <span data-en="Activity logging · Timeline · Insights · Categories · Reminders · CSV/PDF Export"
+              data-zh="活动记录 · 时间轴 · 洞察分析 · 分类管理 · 提醒通知 · CSV/PDF 导出"></span>
       </div>
     </div>
 
     <div>
-      <!-- 英雄示意卡：DoneLog UI -->
       <div class="pn-card">
         <div class="pn-top" data-en="DoneLog · Timeline" data-zh="DoneLog · 时间轴"></div>
         <div class="pn-body">
+          <div class="pn-row"><div class="pn-avatar"></div><div class="pn-line bold"></div></div>
           <div class="pn-row">
-            <div class="pn-avatar"></div>
-            <div class="pn-line bold"></div>
+            <span class="pn-chip"><span data-en="Activity logging" data-zh="活动记录"></span></span>
+            <span class="pn-chip"><span data-en="Timeline view" data-zh="时间轴视图"></span></span>
           </div>
-
+          <div class="pn-row"><div class="pn-line" style="width:92%"></div></div>
           <div class="pn-row">
-            <span class="pn-chip">
-              <span data-en="Activity logging" data-zh="活动记录"></span>
-            </span>
-            <span class="pn-chip">
-              <span data-en="Timeline view" data-zh="时间轴视图"></span>
-            </span>
-          </div>
-
-          <div class="pn-row">
-            <div class="pn-line" style="width:92%"></div>
-          </div>
-
-          <div class="pn-row">
-            <span class="pn-chip">
-              <span data-en="Insights & Analytics" data-zh="洞察分析"></span>
-            </span>
+            <span class="pn-chip"><span data-en="Insights & Analytics" data-zh="洞察分析"></span></span>
             <span class="pn-chip">
               <span data-en="Category management" data-zh="分类管理"></span>
               <span class="pn-dots"><span class="pn-dot"></span><span class="pn-dot"></span></span>
             </span>
           </div>
-
           <div class="pn-row">
-            <span class="pn-chip">
-              <span data-en="Reminders & Notifications" data-zh="提醒与通知"></span>
-            </span>
-            <span class="pn-chip">
-              <span data-en="CSV / PDF Export" data-zh="CSV / PDF 导出"></span>
-            </span>
+            <span class="pn-chip"><span data-en="Reminders & Notifications" data-zh="提醒与通知"></span></span>
+            <span class="pn-chip"><span data-en="CSV / PDF Export" data-zh="CSV / PDF 导出"></span></span>
           </div>
         </div>
-
-        <div class="pn-bar"
-             data-en="Add → Record → Review"
-             data-zh="添加 → 记录 → 回顾"></div>
+        <div class="pn-bar" data-en="Add → Record → Review" data-zh="添加 → 记录 → 回顾"></div>
       </div>
     </div>
   </section>
@@ -118,47 +166,30 @@
   <section id="features" class="section">
     <h2 data-en="Key features" data-zh="核心功能"></h2>
     <div class="grid-3" style="margin-top:24px">
-
-      <!-- 核心功能示例卡 -->
       <div class="card">
         <div class="tag" data-en="Logging" data-zh="记录"></div>
-        <h3 style="margin:12px 0"
-            data-en="Activity logging"
-            data-zh="活动记录"></h3>
-        <p class="text2"
-           data-en="Record completed tasks with title, notes, start and end time, and milestones."
+        <h3 style="margin:12px 0" data-en="Activity logging" data-zh="活动记录"></h3>
+        <p class="text2" data-en="Record completed tasks with title, notes, start and end time, and milestones."
            data-zh="记录完成任务，包括标题、备注、开始/结束时间，以及里程碑标记。"></p>
       </div>
-
       <div class="card">
         <div class="tag" data-en="Timeline" data-zh="时间轴"></div>
-        <h3 style="margin:12px 0"
-            data-en="Timeline View"
-            data-zh="时间轴视图"></h3>
-        <p class="text2"
-           data-en="Review your day in chronological order and visualize your time blocks."
+        <h3 style="margin:12px 0" data-en="Timeline View" data-zh="时间轴视图"></h3>
+        <p class="text2" data-en="Review your day in chronological order and visualize your time blocks."
            data-zh="按时间顺序回顾每天的活动轨迹，清晰了解时间分配。"></p>
       </div>
-
       <div class="card">
         <div class="tag" data-en="Insights" data-zh="洞察"></div>
-        <h3 style="margin:12px 0"
-            data-en="Insights & Analytics"
-            data-zh="洞察分析"></h3>
-        <p class="text2"
-           data-en="Visualize time distribution, activity frequency, and category statistics."
+        <h3 style="margin:12px 0" data-en="Insights & Analytics" data-zh="洞察分析"></h3>
+        <p class="text2" data-en="Visualize time distribution, activity frequency, and category statistics."
            data-zh="通过图表查看时间分布、活动频率和分类占比。"></p>
       </div>
-
-      <!-- 可以继续替换其他功能卡 -->
-
     </div>
   </section>
 
   <section class="section">
     <h2 data-en="Screenshots" data-zh="界面预览"></h2>
-    <p class="lead"
-       data-en="Replace the images below with DoneLog screenshots."
+    <p class="lead" data-en="Replace the images below with DoneLog screenshots."
        data-zh="将下方占位图替换为 DoneLog 的真实截图。"></p>
     <div class="gallery" style="margin-top:16px">
       <img class="landscape" src="ss_en_1.png" data-en-src="ss_en_1.png" data-zh-src="ss_zh_1.png" alt="DoneLog screenshot 1">
@@ -172,26 +203,18 @@
     <div class="grid-2">
       <div class="card">
         <h2 id="privacy" data-en="Privacy" data-zh="隐私"></h2>
-        <p class="text2"
-           data-en="DoneLog is designed with privacy in mind."
-           data-zh="DoneLog 以隐私优先为设计原则。"></p>
+        <p class="text2" data-en="DoneLog is designed with privacy in mind." data-zh="DoneLog 以隐私优先为设计原则。"></p>
         <ul style="margin:12px 0 0 18px; color: var(--text2); line-height:1.7">
-          <li data-en="No account required. Start logging right away."
-              data-zh="无需注册账号，即可开始记录活动。"></li>
-          <li data-en="Your logs are stored locally and under your control."
-              data-zh="所有记录均保存在本地，由你完全掌控。"></li>
-          <li data-en="Export CSV or PDF reports as needed."
-              data-zh="可根据需要导出 CSV 或 PDF 报告。"></li>
-          <li data-en="Local notifications help you track tasks timely."
-              data-zh="本地通知提醒帮助你及时记录任务。"></li>
+          <li data-en="No account required. Start logging right away." data-zh="无需注册账号，即可开始记录活动。"></li>
+          <li data-en="Your logs are stored locally and under your control." data-zh="所有记录均保存在本地，由你完全掌控。"></li>
+          <li data-en="Export CSV or PDF reports as needed." data-zh="可根据需要导出 CSV 或 PDF 报告。"></li>
+          <li data-en="Local notifications help you track tasks timely." data-zh="本地通知提醒帮助你及时记录任务。"></li>
         </ul>
       </div>
 
       <div class="card">
         <h2 id="support" data-en="Support" data-zh="支持"></h2>
-        <p class="text2"
-           data-en="Questions or feedback about DoneLog? Email us."
-           data-zh="关于 DoneLog 的问题或建议，欢迎邮件联系。"></p>
+        <p class="text2" data-en="Questions or feedback about DoneLog? Email us." data-zh="关于 DoneLog 的问题或建议，欢迎邮件联系。"></p>
         <p><a href="mailto:freesysck@outlook.com">freesysck@outlook.com</a></p>
         <p>
           <a href="#" target="_blank" rel="noopener" data-en="Marketing site" data-zh="营销网站"></a><br>
@@ -208,16 +231,13 @@
           <span data-en="DoneLog" data-zh="DoneLog"></span> ·
           <span data-en="Done List & Time Log" data-zh="完成日志与时间记录"></span>
         </strong><br>
-        <span
-          data-en="© 2026 DoneLog. All rights reserved."
-          data-zh="© 2026 DoneLog。保留所有权利。"></span>
+        <span data-en="© 2026 DoneLog. All rights reserved." data-zh="© 2026 DoneLog。保留所有权利。"></span>
       </div>
     </div>
   </footer>
 </div>
 
 <script>
-/* 保留语言切换功能不变 */
 function swapLangImages(lang){
   document.querySelectorAll("img[data-en-src]").forEach(img=>{
     const src = img.getAttribute(lang==="zh" ? "data-zh-src" : "data-en-src");
@@ -246,9 +266,4 @@ function setLang(lang){
 }
 document.getElementById("btn-en").onclick=()=>setLang("en");
 document.getElementById("btn-zh").onclick=()=>setLang("zh");
-const saved = localStorage.getItem("DoneLog-lang") || (navigator.language.startsWith("zh")?"zh":"en");
-setLang(saved);
-</script>
-
-</body>
-</html>
+const saved = localStorage.getItem("DoneLog-lang") || (navigator.language.startsWith("zh")
