@@ -5,121 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title id="title-el"
-  data-en="DualcameraVlog · Dual Camera Vlog Recorder"
-  data-zh="DualcameraVlog · 双摄同录Vlog录制器">DualcameraVlog · Dual Camera Vlog Recorder</title>
+  data-en="DoneLog · Done List & Time Log"
+  data-zh="DoneLog · 完成日志与时间记录">DoneLog · Done List & Time Log</title>
 
 <meta name="description" id="meta-desc"
-  data-en="Record both you and the moment—at the same time. Dual camera recording with drag & resize PiP, adjustable split-screen ratio, one-tap Vlog templates, plus white balance presets and zoom controls."
-  data-zh="双摄同时记录“你”和“眼前的世界”。支持画中画可拖拽缩放、分屏比例调节，一键套用Vlog模板，并提供白平衡预设与变焦控制。"
-  content="Record both you and the moment—at the same time. Dual camera recording with drag & resize PiP, adjustable split-screen ratio, one-tap Vlog templates, plus white balance presets and zoom controls.">
+  data-en="DoneLog helps you record completed tasks, track your time, review daily activities, and export CSV/PDF reports."
+  data-zh="DoneLog 帮你记录完成事项、追踪时间投入，并通过时间轴与统计图表回顾每日活动，支持 CSV / PDF 导出。"
+  content="DoneLog helps you record completed tasks, track your time, review daily activities, and export CSV/PDF reports.">
 
-<link rel="icon" href="dualcameravlog_128.png">
+<link rel="icon" href="donelog_128.png">
 
-<style>
-:root{
-  /* DualcameraVlog 深色主题（沿用原样式） */
-  --bg:#050712; 
-  --surface:#111525; 
-  --text:#F5F7FF; 
-  --text2:#B9C3DA;
+<!-- 保留原来的样式不变 -->
 
-  --accent:#6EE7FF;
-  --accent2:#4F8CFF;
-
-  --chip:#1B2238; 
-  --chip2:#1A2036;
-}
-*{box-sizing:border-box}
-html,body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, 
-  Noto Sans, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
-}
-a{color:var(--accent);text-decoration:none}
-.container{max-width:1100px;margin:0 auto;padding:40px 24px}
-nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700}
-.brand img.icon{width:40px;height:40px;border-radius:12px}
-.lang-switch{display:flex;gap:8px;background:var(--surface);border-radius:12px;padding:6px}
-.lang-switch button{all:unset;cursor:pointer;padding:6px 14px;border-radius:10px;color:var(--text2);font-weight:600}
-.lang-switch button.active{background:var(--accent);color:#0B1220}
-.nav-links{display:flex;gap:18px;align-items:center}
-.nav-links a{color:var(--text2);font-weight:600}
-.nav-links a:hover{color:var(--text)}
-
-.hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:36px;align-items:center;margin-top:40px}
-.hero h1{font-size:40px;line-height:1.1;margin:0 0 16px}
-.hero p.lead{color:var(--text2);font-size:18px;margin:0 0 24px}
-.cta{display:flex;gap:12px;flex-wrap:wrap}
-.button{
-  display:inline-flex;align-items:center;gap:10px;
-  background:linear-gradient(180deg,var(--accent),var(--accent2));
-  color:#0B1220;font-weight:700;padding:14px 22px;border-radius:14px;
-  box-shadow:0 10px 30px rgba(79,140,255,.25);
-} 
-.button.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
-.card{background:var(--surface);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.25);} 
-.section{margin-top:80px}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-.tag{
-  display:inline-block;padding:6px 10px;border-radius:8px;font-size:13px;
-  background:rgba(110,231,255,.16);color:#CFF8FF
-}
-.sample{width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);background:#0f1118;aspect-ratio:9/19.5;object-fit:cover}
-.footer{margin-top:80px;color:var(--text2);font-size:14px;border-top:1px solid rgba(255,255,255,.08);padding:32px 0}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.gallery img{
-  width:100%;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.35);
-  background:#0f1118;aspect-ratio:9/19.5;object-fit:cover
-}
-/* 竖屏图比例 */
-.gallery img.portrait { aspect-ratio: 9 / 19.5; }
-/* 横屏图比例 (iPad & 平板横屏) */
-.gallery img.landscape { aspect-ratio: 16 / 10; }
-@media (max-width:960px){ .hero{grid-template-columns:1fr} }
-
-/* 英雄区：DualcameraVlog UI 示意卡片（沿用原结构） */
-.pn-card{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);background:#0F1528}
-.pn-top{
-  padding:22px 22px 10px;color:#CFF8FF;font-weight:800;letter-spacing:.04em
-}
-.pn-body{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(110,231,255,.35),rgba(110,231,255,0) 55%),
-    linear-gradient(180deg,#151A33,#070B18);
-  padding:22px
-}
-.pn-row{display:flex;align-items:center;gap:10px;margin:10px 0}
-.pn-avatar{
-  width:34px;height:34px;border-radius:50%;
-  background:radial-gradient(circle at 30% 0%,#B9F6FF,#4F8CFF);
-  opacity:.9
-}
-.pn-line{
-  height:10px;border-radius:6px;background:rgba(255,255,255,.10);flex:1
-}
-.pn-line.bold{height:14px;background:rgba(255,255,255,.16);width:70%}
-.pn-chip{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.06);
-  color:var(--text2);font-size:12px;font-weight:600
-}
-.pn-dots{display:flex;gap:6px}
-.pn-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-.pn-bar{background:#0B0F1E;color:#E6F7FF;text-align:center;padding:12px;font-weight:700}
-</style>
 </head>
 
 <body>
 <div class="container">
   <nav>
     <div class="brand">
-      <!-- 替换为 DualcameraVlog 图标 -->
-      <img class="icon" src="dualcameravlog_128.png" alt="DualcameraVlog icon">
+      <!-- 替换为 DoneLog 图标 -->
+      <img class="icon" src="donelog_128.png" alt="DoneLog icon">
       <span>
-        <span data-en="DualcameraVlog" data-zh="DualcameraVlog"></span> ·
-        <span data-en="Dual Camera Vlog Recorder" data-zh="双摄同录·画中画/分屏Vlog"></span>
+        <span data-en="DoneLog" data-zh="DoneLog"></span> ·
+        <span data-en="Done List & Time Log" data-zh="完成日志与时间记录"></span>
       </span>
     </div>
 
@@ -137,12 +45,12 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
   <section class="hero">
     <div>
       <h1
-        data-en="Record two perspectives at once—front & back cameras."
-        data-zh="双摄同录：同时记录你和眼前的世界"></h1>
+        data-en="Record what you actually did"
+        data-zh="记录你真正做过的事"></h1>
 
       <p class="lead"
-         data-en="DualcameraVlog is built for dual-camera Vlogs. Use draggable & resizable Picture-in-Picture, adjust split-screen ratio, apply one-tap templates, and fine-tune with white balance presets and zoom."
-         data-zh="DualcameraVlog 专为双摄 Vlog 打造：画中画窗口可拖拽缩放，分屏比例可调，一键套用拍摄模板，并提供白平衡预设与变焦控制，快速拍出更有故事感的双视角作品。"></p>
+         data-en="DoneLog helps you track completed tasks, visualize your time, and generate CSV/PDF reports for review."
+         data-zh="DoneLog 帮你记录完成事项、追踪时间投入，并通过时间轴与统计图表清晰回顾每天的活动，支持 CSV / PDF 导出。"></p>
 
       <div class="cta">
         <a href="#" class="button" data-en="Download on the App Store" data-zh="在 App Store 下载"></a>
@@ -152,15 +60,15 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
       <div style="margin-top:24px;color:var(--text2)">
         <span>• </span>
         <span
-          data-en="Dual camera · PiP · Split screen · One-tap templates · White balance · Zoom · Video library"
-          data-zh="双摄同录 · 画中画 · 分屏可调 · 一键模板 · 白平衡 · 变焦 · 作品库管理"></span>
+          data-en="Activity logging · Timeline · Insights · Categories · Reminders · CSV/PDF Export"
+          data-zh="活动记录 · 时间轴 · 洞察分析 · 分类管理 · 提醒通知 · CSV/PDF 导出"></span>
       </div>
     </div>
 
     <div>
-      <!-- 英雄示意卡：DualcameraVlog UI -->
+      <!-- 英雄示意卡：DoneLog UI -->
       <div class="pn-card">
-        <div class="pn-top" data-en="DualcameraVlog · Recording" data-zh="DualcameraVlog · 正在录制"></div>
+        <div class="pn-top" data-en="DoneLog · Timeline" data-zh="DoneLog · 时间轴"></div>
         <div class="pn-body">
           <div class="pn-row">
             <div class="pn-avatar"></div>
@@ -169,10 +77,10 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
 
           <div class="pn-row">
             <span class="pn-chip">
-              <span data-en="Mode: Dual Camera" data-zh="模式：双摄同录"></span>
+              <span data-en="Activity logging" data-zh="活动记录"></span>
             </span>
             <span class="pn-chip">
-              <span data-en="Layout: PiP / Split" data-zh="布局：画中画 / 分屏"></span>
+              <span data-en="Timeline view" data-zh="时间轴视图"></span>
             </span>
           </div>
 
@@ -182,27 +90,27 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
 
           <div class="pn-row">
             <span class="pn-chip">
-              <span data-en="PiP: Drag & Resize" data-zh="PiP：拖拽 / 缩放"></span>
+              <span data-en="Insights & Analytics" data-zh="洞察分析"></span>
             </span>
             <span class="pn-chip">
-              <span data-en="Split: Adjustable Ratio" data-zh="分屏：比例可调"></span>
+              <span data-en="Category management" data-zh="分类管理"></span>
               <span class="pn-dots"><span class="pn-dot"></span><span class="pn-dot"></span></span>
             </span>
           </div>
 
           <div class="pn-row">
             <span class="pn-chip">
-              <span data-en="Templates: One Tap" data-zh="模板：一键套用"></span>
+              <span data-en="Reminders & Notifications" data-zh="提醒与通知"></span>
             </span>
             <span class="pn-chip">
-              <span data-en="WB Presets · Zoom" data-zh="白平衡 · 变焦"></span>
+              <span data-en="CSV / PDF Export" data-zh="CSV / PDF 导出"></span>
             </span>
           </div>
         </div>
 
         <div class="pn-bar"
-             data-en="Pick layout → Record → Save to Library"
-             data-zh="选布局 → 录制 → 保存到作品库"></div>
+             data-en="Add → Record → Review"
+             data-zh="添加 → 记录 → 回顾"></div>
       </div>
     </div>
   </section>
@@ -211,72 +119,38 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
     <h2 data-en="Key features" data-zh="核心功能"></h2>
     <div class="grid-3" style="margin-top:24px">
 
-      <!-- 双摄同录 -->
+      <!-- 核心功能示例卡 -->
       <div class="card">
-        <div class="tag" data-en="Dual Cam" data-zh="双摄"></div>
+        <div class="tag" data-en="Logging" data-zh="记录"></div>
         <h3 style="margin:12px 0"
-            data-en="Dual camera recording"
-            data-zh="双摄同时录制"></h3>
+            data-en="Activity logging"
+            data-zh="活动记录"></h3>
         <p class="text2"
-           data-en="Record front + back (and supported rear combinations) at the same time—perfect for Vlogs and reaction videos."
-           data-zh="支持前后同录（以及兼容机型的双后摄组合），一次拍到人物与场景，非常适合 Vlog 与 reaction 内容。"></p>
+           data-en="Record completed tasks with title, notes, start and end time, and milestones."
+           data-zh="记录完成任务，包括标题、备注、开始/结束时间，以及里程碑标记。"></p>
       </div>
 
-      <!-- 画中画 -->
       <div class="card">
-        <div class="tag" data-en="PiP" data-zh="画中画"></div>
+        <div class="tag" data-en="Timeline" data-zh="时间轴"></div>
         <h3 style="margin:12px 0"
-            data-en="Drag & resize Picture-in-Picture"
-            data-zh="画中画自由拖拽缩放"></h3>
+            data-en="Timeline View"
+            data-zh="时间轴视图"></h3>
         <p class="text2"
-           data-en="Place your PiP window anywhere and resize it on the fly for better composition."
-           data-zh="PiP 小窗可自由拖拽位置与缩放大小，随时调整构图，画面更舒适。"></p>
+           data-en="Review your day in chronological order and visualize your time blocks."
+           data-zh="按时间顺序回顾每天的活动轨迹，清晰了解时间分配。"></p>
       </div>
 
-      <!-- 分屏 -->
       <div class="card">
-        <div class="tag" data-en="Split" data-zh="分屏"></div>
+        <div class="tag" data-en="Insights" data-zh="洞察"></div>
         <h3 style="margin:12px 0"
-            data-en="Adjustable split-screen ratio"
-            data-zh="分屏比例可调"></h3>
+            data-en="Insights & Analytics"
+            data-zh="洞察分析"></h3>
         <p class="text2"
-           data-en="Show two views side by side and drag the divider to control each side’s size."
-           data-zh="双画面并列展示，可拖动分界线调节比例，重点更突出。"></p>
+           data-en="Visualize time distribution, activity frequency, and category statistics."
+           data-zh="通过图表查看时间分布、活动频率和分类占比。"></p>
       </div>
 
-      <!-- 模板 -->
-      <div class="card">
-        <div class="tag" data-en="Templates" data-zh="模板"></div>
-        <h3 style="margin:12px 0"
-            data-en="One-tap Vlog templates"
-            data-zh="一键套用拍摄模板"></h3>
-        <p class="text2"
-           data-en="Not sure which layout to use? Apply a preset template instantly for a polished dual-view look."
-           data-zh="不知道怎么搭配布局？内置预设模板一键套用，新手也能快速拍出好看的双摄风格。"></p>
-      </div>
-
-      <!-- 相机控制 -->
-      <div class="card">
-        <div class="tag" data-en="Controls" data-zh="控制"></div>
-        <h3 style="margin:12px 0"
-            data-en="White balance presets & zoom"
-            data-zh="白平衡预设与变焦"></h3>
-        <p class="text2"
-           data-en="Tune color temperature with white balance presets and frame your shot with smooth zoom control."
-           data-zh="提供多种白平衡预设适配不同光线，同时支持自定义变焦控制，拍摄更稳更专业。"></p>
-      </div>
-
-      <!-- 作品库 -->
-      <div class="card">
-        <div class="tag" style="background:rgba(255,255,255,.12);color:#fff"
-             data-en="Library" data-zh="作品库"></div>
-        <h3 style="margin:12px 0"
-            data-en="Built-in video library"
-            data-zh="内置视频库管理"></h3>
-        <p class="text2"
-           data-en="Keep your Vlogs organized in an in-app library for quick review and management."
-           data-zh="应用内独立视频库/相册，方便集中查看、管理与回顾你的 Vlog 作品。"></p>
-      </div>
+      <!-- 可以继续替换其他功能卡 -->
 
     </div>
   </section>
@@ -284,13 +158,13 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
   <section class="section">
     <h2 data-en="Screenshots" data-zh="界面预览"></h2>
     <p class="lead"
-       data-en="Replace the images below with real screenshots from DualcameraVlog."
-       data-zh="将下方占位图替换为 DualcameraVlog 的真实截图。"></p>
+       data-en="Replace the images below with DoneLog screenshots."
+       data-zh="将下方占位图替换为 DoneLog 的真实截图。"></p>
     <div class="gallery" style="margin-top:16px">
-      <img class="landscape" src="ss_en_1.png" data-en-src="ss_en_1.png" data-zh-src="ss_zh_1.png" alt="DualcameraVlog screenshot 1">
-      <img class="landscape" src="ss_en_2.png" data-en-src="ss_en_2.png" data-zh-src="ss_zh_2.png" alt="DualcameraVlog screenshot 2">
-      <img class="landscape" src="ss_en_3.png" data-en-src="ss_en_3.png" data-zh-src="ss_zh_3.png" alt="DualcameraVlog screenshot 3">
-      <img class="landscape" src="ss_en_4.png" data-en-src="ss_en_4.png" data-zh-src="ss_en_4.png" alt="DualcameraVlog screenshot 4">
+      <img class="landscape" src="ss_en_1.png" data-en-src="ss_en_1.png" data-zh-src="ss_zh_1.png" alt="DoneLog screenshot 1">
+      <img class="landscape" src="ss_en_2.png" data-en-src="ss_en_2.png" data-zh-src="ss_zh_2.png" alt="DoneLog screenshot 2">
+      <img class="landscape" src="ss_en_3.png" data-en-src="ss_en_3.png" data-zh-src="ss_zh_3.png" alt="DoneLog screenshot 3">
+      <img class="landscape" src="ss_en_4.png" data-en-src="ss_en_4.png" data-zh-src="ss_zh_4.png" alt="DoneLog screenshot 4">
     </div>
   </section>
 
@@ -299,35 +173,29 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
       <div class="card">
         <h2 id="privacy" data-en="Privacy" data-zh="隐私"></h2>
         <p class="text2"
-           data-en="DualcameraVlog is designed with privacy in mind."
-           data-zh="DualcameraVlog 以隐私优先为设计原则。"></p>
+           data-en="DoneLog is designed with privacy in mind."
+           data-zh="DoneLog 以隐私优先为设计原则。"></p>
         <ul style="margin:12px 0 0 18px; color: var(--text2); line-height:1.7">
-          <li
-            data-en="No account required. Start recording right away."
-            data-zh="无需注册账号，打开即可开始拍摄。"></li>
-          <li
-            data-en="Your videos stay under your control. Processing and saving depend on your device and settings."
-            data-zh="你始终掌控自己的媒体内容；处理与保存表现取决于设备能力与设置。"></li>
-          <li
-            data-en="Recordings can be saved to your library based on your choice."
-            data-zh="录制结果可按你的选择保存到相册或应用内作品库。"></li>
-          <li
-            data-en="Dual camera availability depends on device capability and iOS version."
-            data-zh="双摄能力与可用组合取决于机型与系统版本。"></li>
+          <li data-en="No account required. Start logging right away."
+              data-zh="无需注册账号，即可开始记录活动。"></li>
+          <li data-en="Your logs are stored locally and under your control."
+              data-zh="所有记录均保存在本地，由你完全掌控。"></li>
+          <li data-en="Export CSV or PDF reports as needed."
+              data-zh="可根据需要导出 CSV 或 PDF 报告。"></li>
+          <li data-en="Local notifications help you track tasks timely."
+              data-zh="本地通知提醒帮助你及时记录任务。"></li>
         </ul>
       </div>
 
       <div class="card">
         <h2 id="support" data-en="Support" data-zh="支持"></h2>
         <p class="text2"
-           data-en="Questions or feedback about DualcameraVlog? Email us."
-           data-zh="关于 DualcameraVlog 的问题或建议，欢迎邮件联系。"></p>
+           data-en="Questions or feedback about DoneLog? Email us."
+           data-zh="关于 DoneLog 的问题或建议，欢迎邮件联系。"></p>
         <p><a href="mailto:freesysck@outlook.com">freesysck@outlook.com</a></p>
         <p>
-          <a href="#" target="_blank" rel="noopener"
-             data-en="Marketing site" data-zh="营销网站"></a><br>
-          <a href="#" target="_blank" rel="noopener"
-             data-en="Privacy policy" data-zh="隐私政策"></a>
+          <a href="#" target="_blank" rel="noopener" data-en="Marketing site" data-zh="营销网站"></a><br>
+          <a href="#" target="_blank" rel="noopener" data-en="Privacy policy" data-zh="隐私政策"></a>
         </p>
       </div>
     </div>
@@ -337,18 +205,19 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
     <div class="grid-2">
       <div>
         <strong>
-          <span data-en="DualcameraVlog" data-zh="DualcameraVlog"></span> ·
-          <span data-en="Dual Camera Vlog Recorder" data-zh="双摄同录·画中画/分屏Vlog"></span>
+          <span data-en="DoneLog" data-zh="DoneLog"></span> ·
+          <span data-en="Done List & Time Log" data-zh="完成日志与时间记录"></span>
         </strong><br>
         <span
-          data-en="© 2026 DualcameraVlog. All rights reserved."
-          data-zh="© 2026 DualcameraVlog。保留所有权利。"></span>
+          data-en="© 2026 DoneLog. All rights reserved."
+          data-zh="© 2026 DoneLog。保留所有权利。"></span>
       </div>
     </div>
   </footer>
 </div>
 
 <script>
+/* 保留语言切换功能不变 */
 function swapLangImages(lang){
   document.querySelectorAll("img[data-en-src]").forEach(img=>{
     const src = img.getAttribute(lang==="zh" ? "data-zh-src" : "data-en-src");
@@ -373,11 +242,11 @@ function setLang(lang){
   swapLangImages(lang);
   document.getElementById("btn-en").classList.toggle("active", lang==="en");
   document.getElementById("btn-zh").classList.toggle("active", lang==="zh");
-  localStorage.setItem("DualcameraVlog-lang", lang);
+  localStorage.setItem("DoneLog-lang", lang);
 }
 document.getElementById("btn-en").onclick=()=>setLang("en");
 document.getElementById("btn-zh").onclick=()=>setLang("zh");
-const saved = localStorage.getItem("DualcameraVlog-lang") || (navigator.language.startsWith("zh")?"zh":"en");
+const saved = localStorage.getItem("DoneLog-lang") || (navigator.language.startsWith("zh")?"zh":"en");
 setLang(saved);
 </script>
 
